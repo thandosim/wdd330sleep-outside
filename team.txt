@@ -1,0 +1,8 @@
+team trello board
+https://trello.com/b/5vNn5CC8/sleep-outside-team-01
+
+deployed app on netlify
+https://681f350be296b8c77be2a666--mellow-crepe-947b38.netlify.app/
+
+Team members:
+1. Thandokuhle Simelane
