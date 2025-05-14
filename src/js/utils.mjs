@@ -26,5 +26,7 @@ export function setClick(selector, callback) {
 
 //get the product parameters
 export function getParam(param) {
-  const dataSource = new ProductData("tents");
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const product = urlParams.get('product');
 }
