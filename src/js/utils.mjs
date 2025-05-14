@@ -1,3 +1,5 @@
+import ProductData from "./ProductData.mjs";
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -20,4 +22,9 @@ export function setClick(selector, callback) {
     callback();
   });
   qs(selector).addEventListener("click", callback);
+}
+
+//get the product parameters
+export function getParam(param) {
+  const dataSource = new ProductData("tents");
 }
