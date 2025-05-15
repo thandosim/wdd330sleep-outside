@@ -5,7 +5,9 @@ const dataSource = new ProductData("tents");
 
 const productId = getParam('product');
 
-console.log(dataSource.findProductById(productId));
+// console.log(dataSource.findProductById(productId));
+// const testing = dataSource.findProductById(productId);
+// setLocalStorage("testing1", testing);
 
 function addProductToCart(product) {
   let cartItems = getLocalStorage("so-cart") || [];
