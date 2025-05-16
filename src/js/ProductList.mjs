@@ -26,4 +26,8 @@ export default class ProductList {
     async init() {
         const list = await this.dataSource.getData();
     }
+
+    renderList(list) {
+        this.listElement.innerHTML = list.map(productCardTemplate).join("")
+    }
 }
