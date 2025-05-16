@@ -11,7 +11,11 @@ export default class ProductDetails {
     this.product = await this.dataSource.findProductById(this.productId);
     console.log(this.product);
     this.renderProductDetails();
-    document.getElementById('addToCart').addEventListener('click', this.addProductToCart.bind(this));
+    // document.getElementById('addToCart').addEventListener('click', this.addProductToCart.bind(this));
+    document.getElementById('addToCart').addEventListener('click', () => {
+      this.addProductToCart(this.product);
+    });
+
   }
 
   addProductToCart(product) {
