@@ -30,6 +30,8 @@ export default class ProductList {
     }
 
     renderList(list) {
-        this.listElement.innerHTML = list.map(productCardTemplate).join("")
+        // this.listElement.innerHTML = list.map(productCardTemplate).join("")//my original way
+        const htmlStrings = list.map(productCardTemplate);
+        this.listElement.insertAdjacentHTML('afterbegin', htmlStrings.join(''));
     }
 }
