@@ -1,3 +1,5 @@
+import { renderListWithTemplate } from "./utils.mjs";
+
 function productCardTemplate(product) {
     const productListItem = `
         <li class="product-card">
@@ -25,13 +27,14 @@ export default class ProductList {
 
     async init() {
         const list = await this.dataSource.getData();
-        this.renderList(list);
+        // this.renderList(list);
+        renderListWithTemplate(productCardTemplate,this.listElement,list);
 
     }
 
-    renderList(list) {
-        // this.listElement.innerHTML = list.map(productCardTemplate).join("")//my original way
-        const htmlStrings = list.map(productCardTemplate);
-        this.listElement.insertAdjacentHTML('afterbegin', htmlStrings.join(''));
-    }
+    // renderList(list) {
+    //     // this.listElement.innerHTML = list.map(productCardTemplate).join("")//my original way
+    //     const htmlStrings = list.map(productCardTemplate);
+    //     this.listElement.insertAdjacentHTML('afterbegin', htmlStrings.join(''));
+    // }
 }
