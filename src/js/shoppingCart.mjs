@@ -1,9 +1,9 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, qs } from "./utils.mjs";
 
 
 
 function cartItemTemplate(item) {
-  const newItem = `<li class="cart-card divider">
+   `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
       src="${item.Image}"
@@ -16,27 +16,9 @@ function cartItemTemplate(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
-  <button class="remove-item" data-id="${item.Id}">X</button>
-
-
-
 </li>`;
 
   return newItem;
-}
-
-function removeItem() {
-  const removeItem = document.querySelectorAll(".remove-item");
-  removeItem.forEach((item) => {
-    item.addEventListener("click", (e) => {
-      const cartItems = getLocalStorage("so-cart");
-      const itemId = e.target.dataset.id;
-      const updatedCart = cartItems.filter((item) => item.Id !== itemId);
-      localStorage.setItem("so-cart", JSON.stringify(updatedCart));
-      renderCartContents();
-    });
-  });
-  
 }
 
 function renderCartContents() {
