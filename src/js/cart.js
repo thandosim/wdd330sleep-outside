@@ -1,7 +1,16 @@
 import { loadHeaderFooter } from "./utils.mjs";
 import ShoppingCart from "./ShoppingCart.mjs";
 
-const cartItems = new ShoppingCart(document.querySelector(".product-list"));
+function renderCartContents() {
+  const cartItems = getLocalStorage("so-cart");
+  // Check if cartItems exists and is an array
+  if (cartItems && Array.isArray(cartItems)) {
+    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  } else {
+    document.querySelector(".product-list").innerHTML = "";
+  }
+}
 
 cartItems.init();
 loadHeaderFooter();
