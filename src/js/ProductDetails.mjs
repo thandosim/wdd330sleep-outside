@@ -5,8 +5,9 @@ export default class ProductDetails {
         this.dataSource = dataSource;
     }
 
-    init() {
-
+    async init() {
+        const ProductDetails = await this.dataSource.findProductById(this.productId);
+        this.renderProductDetails();
     }
 
     addProductToCart(product) {
