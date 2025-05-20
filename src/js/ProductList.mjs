@@ -17,6 +17,24 @@ function productCardTemplate(product) {
     return productListItem;
 }
 
+async function imageExists(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.src = url;
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+    });
+}
+
+async function filterValidImages(list) {
+    const validItems = await Promise.all(
+        list.map(async (item) => {
+            const exists = await imageExists(item.Image);
+            return exists ? item : null;
+        })
+    );
+    return validItems.filter(Boolean);
+}
 
 export default class ProductList {
     constructor(category, dataSource, listElement) {
@@ -26,15 +44,9 @@ export default class ProductList {
     }
 
     async init() {
-        const list = await this.dataSource.getData();
-        // this.renderList(list);
-        renderListWithTemplate(productCardTemplate,this.listElement,list);
+    const list = await this.dataSource.getData();
+    const filteredList = await filterValidImages(list);
+    renderListWithTemplate(productCardTemplate, this.listElement, filteredList);
+}
 
-    }
-
-    // renderList(list) {
-    //     // this.listElement.innerHTML = list.map(productCardTemplate).join("")//my original way
-    //     const htmlStrings = list.map(productCardTemplate);
-    //     this.listElement.insertAdjacentHTML('afterbegin', htmlStrings.join(''));
-    // }
 }
