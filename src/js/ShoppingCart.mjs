@@ -28,6 +28,5 @@ export default class ShoppingCart {
     async init() {
         const list = await getLocalStorage("so-cart");
         renderListWithTemplate(cartItemTemplate,this.listElement,list);
-
     }
 }
