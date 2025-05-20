@@ -1,7 +1,7 @@
-import {loadHeaderFooter, } from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 import ShoppingCart from "./ShoppingCart.mjs";
 
-const cartItems = new ShoppingCart( document.querySelector(".product-list"))
+const cartItems = new ShoppingCart(document.querySelector(".product-list"));
 
 cartItems.init();
 loadHeaderFooter();
