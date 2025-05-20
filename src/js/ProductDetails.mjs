@@ -1,61 +1,49 @@
-import {qs, getLocalStorage } from "./utils.mjs";
+
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 export default class ProductDetails {
-  constructor(productId, dataSource){
-  this.productId = productId;
-  this.product = {};
-  this.dataSource = dataSource;
+
+  constructor(productId, dataSource) {
+    this.productId = productId;
+    this.product = {};
+    this.dataSource = dataSource;
+  }
+
+  async init() {
+    // use the datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
+    this.product = await this.dataSource.findProductById(this.productId);
+    // the product details are needed before rendering the HTML
+    this.renderProductDetails();
+    // once the HTML is rendered, add a listener to the Add to Cart button
+    // Notice the .bind(this). This callback will not work if the bind(this) is missing. Review the readings from this week on "this" to understand why.
+    document
+      .getElementById("addToCart")
+      .addEventListener("click", this.addProductToCart.bind(this));
+  }
+
+  addProductToCart() {
+    const cartItems = getLocalStorage("so-cart") || [];
+    cartItems.push(this.product);
+    setLocalStorage("so-cart", cartItems);
+  }
+
+  renderProductDetails() {
+    productDetailsTemplate(this.product);
+  }
 }
 
+function productDetailsTemplate(product) {
+  document.querySelector("h2").textContent = product.Brand;
+  document.querySelector("h3").textContent = product.NameWithoutBrand;
 
+  const productImage = document.getElementById("productImage");
+  productImage.src = product.Image;
+  productImage.alt = product.NameWithoutBrand;
 
-async init() {
-  this.product = await this.dataSource.findProductById(this.productId);
-  this.renderProductDetails();
+  document.getElementById("productPrice").textContent = product.FinalPrice;
+  document.getElementById("productColor").textContent = product.Colors[0].ColorName;
+  document.getElementById("productDesc").innerHTML = product.DescriptionHtmlSimple;
 
-  document
-      .getElementById('addToCart')
-      .addEventListener('click', this.addProductToCart.bind(this));
-
+  document.getElementById("addToCart").dataset.id = product.Id;
 }
 
-  addProductToCart(product) {
-   letcart = getLocalStorage("so-cart") || [];
-   const productInCart = cart.find((item) => item.Id === product.Id);
-
-   
-   if (productInCart) {
-     productInCart.quantity = (productInCart.quantity || 1) + 1;
-   } else {
-     product.quantity = 1;
-     cart.push(product);
-   }
-
-   localStorage.setItem("so-cart", JSON.stringify(cart));
-
-  
-}
-
-renderProductDetails() {
-        qs(".product-detail h3").innerHTML = this.product.Brand.Name;
-        qs(".product-detail h2").innerHTML = this.product.NameWithoutBrand;
-        renderListWithTemplate(productImageTemplate,qs(".slides"),this.product.Images.ExtraImages);
-        const newChild = document.createElement("img");
-        newChild.src = this.product.Images.PrimaryLarge
-        newChild.alt = this.product.Name
-        qs(".slides").prepend(newChild)
-        qs(".product-card__price").innerHTML = "Now " + `$${this.product.FinalPrice}`;
-        qs(".product-card__save").innerHTML = "Save $" + (this.product.SuggestedRetailPrice - this.product.FinalPrice).toFixed(2);
-
-        qs(".product-card__disc").innerHTML = "Was " + `$${this.product.SuggestedRetailPrice}`;
-        qs(".product__color").innerHTML = this.product.Colors[0].ColorName;
-        qs(".product__description").innerHTML = this.product.DescriptionHtmlSimple;
-        qs(".product-detail__add button").setAttribute("data-id", this.product.Id);
- 
-}
-
-  // this.product = await this.dataSource.findProductById(this.productId);
-  // this.renderProductDetails()
-
- 
-}
