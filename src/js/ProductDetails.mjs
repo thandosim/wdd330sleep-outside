@@ -27,7 +27,7 @@ export default class ProductDetails {
         productDetailSection.children[2].src = this.product.Image;
         productDetailSection.children[2].alt = this.product.NameWithoutBrand;
         productDetailSection.children[3].textContent = `$${this.product.ListPrice}`;
-        productDetailSection.children[4].textContent = this.product.Colors.ColorName;
+        productDetailSection.children[4].textContent = this.product.Colors[0].ColorName;
         productDetailSection.children[5].innerHTML = this.product.DescriptionHtmlSimple;
     }
 }
