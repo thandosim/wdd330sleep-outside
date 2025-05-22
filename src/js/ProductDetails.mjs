@@ -1,10 +1,12 @@
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import cartItemTemplate from "./cartItems";
+import { setLocalStorage, getLocalStorage, renderListWithTemplate, renderItemWithTemplate } from "./utils.mjs";
 
 export default class ProductDetails {
-    constructor(productId, dataSource) {
+    constructor(productId, dataSource, cartContainer) {
         this.productId = productId;
         this.product = {};
         this.dataSource = dataSource;
+        this.cartContainer = cartContainer;
     }
 
     async init() {
@@ -15,6 +17,7 @@ export default class ProductDetails {
     }
 
     addProductToCart() {
+
         let cartItems = getLocalStorage("so-cart") || [];
 
         // I used this variable to check if the product is in the list or among the cart items
@@ -35,6 +38,7 @@ export default class ProductDetails {
         }
 
         setLocalStorage("so-cart", cartItems);
+        renderListWithTemplate(cartItemTemplate, this.cartContainer, cartItems);
     }
 
     renderProductDetails() {

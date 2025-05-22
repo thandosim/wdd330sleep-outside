@@ -37,3 +37,12 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   }
   parentElement.insertAdjacentHTML('afterbegin', htmlStrings.join(''));
 }
+
+
+export function renderItemWithTemplate(templateFn, parentElement, item, position = "afterbegin", clear = false) {
+  const htmlStrings = templateFn(item);
+  if(clear=true) {
+    parentElement.innerHTML = '';
+  }
+  parentElement.insertAdjacentHTML('afterbegin', htmlStrings);
+}

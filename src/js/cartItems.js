@@ -1,15 +1,5 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
 
-export function cartItemTemplate(item) {
-    `<p class="item-${item.Id}">${item.NameWithoutBrand} Quantity <span>${getLocalStorage(item.NameWithoutBrand)}<span></p>`
-};
-
-export default class displayCartItem {
-    constructor(product) {
-        this.product = product;
-    }
-
-    renderWithTemplate() {
-        re
-    }
+export default function cartItemTemplate(item) {
+   return `<p class="item-${item.Id}">${item.NameWithoutBrand} <span>Quantity ${getLocalStorage(item.Name)}<span></p>`
 };
