@@ -16,7 +16,24 @@ export default class ProductDetails {
 
     addProductToCart() {
         let cartItems = getLocalStorage("so-cart") || [];
-        cartItems.push(this.product);
+
+        // I used this variable to check if the product is in the list or among the cart items
+        let productinList = false;
+
+        cartItems.forEach(item => {
+            if (this.productId == item.Id) {
+                let quantity = 0;
+                quantity = parseInt(getLocalStorage(`${this.product.Name}`));
+                setLocalStorage(`${this.product.Name}`, `${quantity + 1}`)
+                productinList = true;
+            }
+        });
+
+        if (productinList == false) {
+            cartItems.push(this.product);
+            setLocalStorage(`${this.product.Name}`, 1)
+        }
+
         setLocalStorage("so-cart", cartItems);
     }
 
