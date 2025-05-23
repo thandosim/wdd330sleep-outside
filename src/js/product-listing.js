@@ -2,7 +2,9 @@ import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 import { getParam, loadHeaderFooter } from "./utils.mjs";
 const category = getParam('category');
-const listElement = document.querySelector(".product-list")
+const title = document.querySelector("#category");
+title.textContent += `${category}`
+const listElement = document.querySelector(".product-list");
 const dataSource = new ProductData();
 const myList = new ProductList(
   category,
