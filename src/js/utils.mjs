@@ -23,12 +23,12 @@ export function getLocalStorage(key) {
 }
 
 //get the product parameters
-export function getParam(param) {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get("product");
-  return product;
-}
+// export function getParam(param) {
+//   const queryString = window.location.search;
+//   const urlParams = new URLSearchParams(queryString);
+//   const product = urlParams.get("product");
+//   return product;
+// }
 
 export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
   if (clear=true) {

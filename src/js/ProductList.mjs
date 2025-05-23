@@ -44,9 +44,19 @@ export default class ProductList {
     }
 
     async init() {
-    const list = await this.dataSource.getData();
-    const filteredList = await filterValidImages(list);
-    renderListWithTemplate(productCardTemplate, this.listElement, filteredList);
-}
-
+        try {
+            const list = await this.dataSource.getData();
+            console.log("Loaded products:", list.length);
+            
+            // Filter products with valid images
+            const filteredList = await filterValidImages(list);
+            console.log("Products with valid images:", filteredList.length);
+            
+            // Render the product list
+            renderListWithTemplate(productCardTemplate, this.listElement, filteredList);
+        } catch (error) {
+            console.error("Error loading product list:", error);
+            this.listElement.innerHTML = `<li class="error">Error loading products: ${error.message}</li>`;
+        }
+    }
 }
