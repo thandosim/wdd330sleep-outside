@@ -39,15 +39,15 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
 }
 
 export function renderWithTemplate(template, parentElement, data, callback) {
-  // Clear the parent element first before adding new content
-  parentElement.innerHTML = "";
+  // Remove Vite client script if present
+  template = template.replace(/<script.*?@vite\/client.*?<\/script>/g, '');
   
-  // Create a temporary container
-  const tempElement = document.createElement('div');
-  tempElement.innerHTML = template;
+  // Debug logs
+  console.log("Rendering template to:", parentElement);
+  console.log("Template length:", template.length);
   
-  // Append the content to the parent element
-  parentElement.appendChild(tempElement.firstElementChild || tempElement);
+  // Simply set the innerHTML of the parent element
+  parentElement.innerHTML = template;
   
   if (callback) {
     callback(data);
@@ -56,6 +56,9 @@ export function renderWithTemplate(template, parentElement, data, callback) {
 
 export async function loadTemplate(path) {
   const res = await fetch(path);
+  if (!res.ok) {
+    throw new Error(`Failed to load template: ${path} (${res.status} ${res.statusText})`);
+  }
   const template = await res.text();
   return template;
 }
@@ -65,13 +68,12 @@ export async function loadHeaderFooter() {
   
   // Check if header is already loaded to prevent multiple loads
   const headerElement = document.getElementById("main-header");
-  if (headerElement && !headerElement.hasAttribute("data-loaded")) {
+  if (headerElement) {
     try {
       const headerTemplate = await loadTemplate("/partials/header.html");
       console.log("Header template loaded, rendering...");
+      console.log("Header template content:", headerTemplate); // Debug log
       renderWithTemplate(headerTemplate, headerElement);
-      // Mark as loaded
-      headerElement.setAttribute("data-loaded", "true");
     } catch (error) {
       console.error("Error loading header:", error);
     }
@@ -79,13 +81,12 @@ export async function loadHeaderFooter() {
 
   // Check if footer is already loaded to prevent multiple loads
   const footerElement = document.getElementById("main-footer");
-  if (footerElement && !footerElement.hasAttribute("data-loaded")) {
+  if (footerElement) {
     try {
       const footerTemplate = await loadTemplate("/partials/footer.html");
       console.log("Footer template loaded, rendering...");
+      console.log("Footer template content:", footerTemplate); // Debug log
       renderWithTemplate(footerTemplate, footerElement);
-      // Mark as loaded
-      footerElement.setAttribute("data-loaded", "true");
     } catch (error) {
       console.error("Error loading footer:", error);
     }
