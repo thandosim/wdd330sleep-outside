@@ -4,21 +4,29 @@ import { setLocalStorage } from "./utils.mjs";
 
 // Get the product id from the URL
 const productId = getParam("product");
+console.log("Product ID:", productId); // Debug log
 const dataSource = new ProductData("tents");
 
 async function loadProductDetails() {
-  const product = await dataSource.findProductById(productId);
-  
-  if (product) {
-    renderProductDetails(product);
+  try {
+    const product = await dataSource.findProductById(productId);
+    console.log("Product data:", product); // Debug log
     
-    // Add event listener to Add to Cart button
-    document.getElementById("addToCart").addEventListener("click", () => {
-      addProductToCart(product);
-    });
-  } else {
+    if (product) {
+      renderProductDetails(product);
+      
+      // Add event listener to Add to Cart button
+      document.getElementById("addToCart").addEventListener("click", () => {
+        addProductToCart(product);
+      });
+    } else {
+      document.querySelector(".product-detail").innerHTML = 
+        "<p>Product not found. Please return to the <a href='/'>home page</a>.</p>";
+    }
+  } catch (error) {
+    console.error("Error loading product details:", error);
     document.querySelector(".product-detail").innerHTML = 
-      "<p>Product not found. Please return to the <a href='/'>home page</a>.</p>";
+      "<p>Error loading product. Please return to the <a href='/'>home page</a>.</p>";
   }
 }
 
