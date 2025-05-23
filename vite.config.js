@@ -3,7 +3,6 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   root: "src/",
-
   build: {
     outDir: "../dist",
     rollupOptions: {
@@ -15,4 +14,6 @@ export default defineConfig({
       },
     },
   },
+  // Add this to ensure assets are copied to the dist folder
+  publicDir: "public",
 });
