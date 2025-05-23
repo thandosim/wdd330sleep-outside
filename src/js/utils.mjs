@@ -62,3 +62,8 @@ export async function loadHeaderFooter() {
   const footerElement = document.querySelector("#main-footer");
   renderWithTemplate(footerTemplate, footerElement);
 }
+
+//my own function to capitilize words. 
+export function capitalizeWords(str) {
+    return str.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+}
