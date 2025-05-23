@@ -39,8 +39,17 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
 }
 
 export function renderWithTemplate(template, parentElement, data, callback) {
-  parentElement.innerHTML = template;
-  if(callback) {
+  // Clear the parent element first before adding new content
+  parentElement.innerHTML = "";
+  
+  // Create a temporary container
+  const tempElement = document.createElement('div');
+  tempElement.innerHTML = template;
+  
+  // Append the content to the parent element
+  parentElement.appendChild(tempElement.firstElementChild || tempElement);
+  
+  if (callback) {
     callback(data);
   }
 }
@@ -54,21 +63,31 @@ export async function loadTemplate(path) {
 export async function loadHeaderFooter() {
   console.log("Loading header and footer...");
   
-  const headerTemplate = await loadTemplate("/partials/header.html");
+  // Check if header is already loaded to prevent multiple loads
   const headerElement = document.getElementById("main-header");
-  if (headerElement) {
-    console.log("Header element found, rendering template");
-    renderWithTemplate(headerTemplate, headerElement);
-  } else {
-    console.error("Header element not found with ID 'main-header'");
+  if (headerElement && !headerElement.hasAttribute("data-loaded")) {
+    try {
+      const headerTemplate = await loadTemplate("/partials/header.html");
+      console.log("Header template loaded, rendering...");
+      renderWithTemplate(headerTemplate, headerElement);
+      // Mark as loaded
+      headerElement.setAttribute("data-loaded", "true");
+    } catch (error) {
+      console.error("Error loading header:", error);
+    }
   }
 
-  const footerTemplate = await loadTemplate("/partials/footer.html");
+  // Check if footer is already loaded to prevent multiple loads
   const footerElement = document.getElementById("main-footer");
-  if (footerElement) {
-    console.log("Footer element found, rendering template");
-    renderWithTemplate(footerTemplate, footerElement);
-  } else {
-    console.error("Footer element not found with ID 'main-footer'");
+  if (footerElement && !footerElement.hasAttribute("data-loaded")) {
+    try {
+      const footerTemplate = await loadTemplate("/partials/footer.html");
+      console.log("Footer template loaded, rendering...");
+      renderWithTemplate(footerTemplate, footerElement);
+      // Mark as loaded
+      footerElement.setAttribute("data-loaded", "true");
+    } catch (error) {
+      console.error("Error loading footer:", error);
+    }
   }
 }
