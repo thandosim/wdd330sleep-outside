@@ -44,9 +44,9 @@ export default class ProductList {
     }
 
     async init() {
-    const list = await this.dataSource.getData();
-    const filteredList = await filterValidImages(list);
-    renderListWithTemplate(productCardTemplate, this.listElement, filteredList);
+    const list = await this.dataSource.getData(this.category);
+    // const filteredList = await filterValidImages(list);
+    renderListWithTemplate(productCardTemplate, this.listElement, list);
 }
 
 }
