@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
@@ -35,5 +35,7 @@ function renderCartContents() {
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
   removeItem(); // ✅ Attach event listeners to remove buttons
 }
+
+loadHeaderFooter();
 
 renderCartContents(); // Initial render
