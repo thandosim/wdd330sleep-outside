@@ -30,7 +30,9 @@ export default class ProductDetails {
     document.querySelector('h3').textContent = product.NameWithoutBrand;
 
     const productImage = document.getElementById('productImage');
+
     productImage.src = product.Images.PrimaryLarge;
+
     productImage.alt = product.NameWithoutBrand;
 
     document.getElementById('productPrice').textContent = `$${product.FinalPrice}`;

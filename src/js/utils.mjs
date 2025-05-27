@@ -28,15 +28,17 @@ export function setClick(selector, callback) {
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get("product");
-  return product;
+  return urlParams.get(param);
 }
 
 export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  
+  const htmlStrings = list.map(templateFn);
+  
   if (clear=true) {
     parentElement.innerHTMl = ``;
   } 
-  const htmlStrings = list.map(templateFn);
+  
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
