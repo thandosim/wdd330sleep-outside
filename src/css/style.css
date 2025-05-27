@@ -156,6 +156,20 @@ button {
   padding: 1rem;
 }
 
+.product-categories {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.product-categories li {
+  list-style: none;
+}
+
+.product-categories img {
+  max-width: 150px;
+}
+
 .product-list {
   display: flex;
   flex-flow: row wrap;
