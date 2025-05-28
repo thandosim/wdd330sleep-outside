@@ -7,7 +7,7 @@ export default class CheckoutProcess {
         this.list = [];
         this.itemTotal = 0;
         this.shipping = 0;
-        this.taxRate = 0.06; // 6% tax
+        this.taxRate = 0.06; 
         this.orderTotal = 0;
     }
 
@@ -20,11 +20,11 @@ export default class CheckoutProcess {
         const orderSummary = document.querySelector(this.outputSelector);
         if (zipInput) {
             zipInput.addEventListener("input", () => {
-                if (zipInput.value.length === 5) { // Assuming a 5-digit ZIP code
+                if (zipInput.value.length === 5) { 
                     this.displayOrderTotals();
                     orderSummary.classList.remove("hide");
                 } else {
-                    orderSummary.classList.add("hide"); // Hide if invalid
+                    orderSummary.classList.add("hide"); 
                 }
 
             });
@@ -33,28 +33,21 @@ export default class CheckoutProcess {
     }
 
     calculateItemSubTotal() {
-        // Calculate subtotal from cart items
         this.itemTotal = this.list.reduce((sum, item) => sum + item.FinalPrice, 0);
     }
 
     calculateOrderTotal() {
-        // Calculate tax
         const tax = this.itemTotal * this.taxRate;
 
-        // Calculate shipping: $10 for the first item, $2 for each additional item
         const itemCount = this.list.length;
         this.shipping = itemCount > 0 ? 10 + (itemCount - 1) * 2 : 0;
 
-        // Calculate final order total
         this.orderTotal = this.itemTotal + tax + this.shipping;
 
-        // Display totals
         this.displayOrderTotals(tax);
     }
 
     displayOrderTotals(tax) {
-        // Select elements and update values
-        // const orderSummary = document.querySelector(this.outputSelector);
         const subtotalElem = document.querySelector(`${this.outputSelector} #subtotal`);
         const taxElem = document.querySelector(`${this.outputSelector} #tax`);
         const shippingElem = document.querySelector(`${this.outputSelector} #shipping`);
