@@ -30,6 +30,26 @@ function productCardTemplate(product) {
     `;
 }
 
+function productDetailTemplate(product) {
+    const isDiscounted = product.FinalPrice < product.SuggestedRetailPrice;
+    const discountPercent = isDiscounted
+        ? Math.round(100 - (product.FinalPrice / product.SuggestedRetailPrice) * 100)
+        : 0;
+
+    return `
+        <div class="product-detail">
+            <img src="${product.Image}" alt="${product.NameWithoutBrand}" />
+            <h1>${product.Brand.Name} ${product.NameWithoutBrand}</h1>
+            <p class="product-detail__price">
+                $${product.FinalPrice.toFixed(2)}
+                ${isDiscounted ? `<span class="suggested-price">$${product.SuggestedRetailPrice.toFixed(2)}</span>
+                <span class="discount-badge">-${discountPercent}%</span>` : ""}
+            </p>
+            <!-- ...other product details... -->
+        </div>
+    `;
+}
+
 async function imageExists(url) {
     return new Promise((resolve) => {
         const img = new Image();
