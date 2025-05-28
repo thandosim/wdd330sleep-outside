@@ -4,8 +4,14 @@ function productCardTemplate(product) {
     const imagePath = product.Image.startsWith("../") 
         ? product.Image.replace("../", "/") 
         : product.Image;
-        
-    const productListItem = `
+
+    // Check for discount
+    const isDiscounted = product.FinalPrice < product.SuggestedRetailPrice;
+    const discountPercent = isDiscounted
+        ? Math.round(100 - (product.FinalPrice / product.SuggestedRetailPrice) * 100)
+        : 0;
+
+    return `
         <li class="product-card">
             <a href="/product_pages/?product=${product.Id}">
               <img
@@ -14,11 +20,14 @@ function productCardTemplate(product) {
               />
               <h3 class="card__brand">${product.Brand.Name}</h3>
               <h2 class="card__name">${product.NameWithoutBrand}</h2>
-              <p class="product-card__price">$${product.ListPrice}</p>
+              <p class="product-card__price">
+                $${product.FinalPrice.toFixed(2)}
+                ${isDiscounted ? `<span class="suggested-price">$${product.SuggestedRetailPrice.toFixed(2)}</span>
+                <span class="discount-badge">-${discountPercent}%</span>` : ""}
+              </p>
             </a>
         </li>
     `;
-    return productListItem;
 }
 
 async function imageExists(url) {
@@ -51,13 +60,9 @@ export default class ProductList {
         try {
             const list = await this.dataSource.getData();
             console.log("Loaded products:", list.length);
-            
-            // Filter products with valid images
-            const filteredList = await filterValidImages(list);
-            console.log("Products with valid images:", filteredList.length);
-            
-            // Render the product list
-            renderListWithTemplate(productCardTemplate, this.listElement, filteredList);
+
+            // Render all products, not just those with valid images
+            renderListWithTemplate(productCardTemplate, this.listElement, list);
         } catch (error) {
             console.error("Error loading product list:", error);
             this.listElement.innerHTML = `<li class="error">Error loading products: ${error.message}</li>`;
