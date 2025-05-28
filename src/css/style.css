@@ -252,6 +252,21 @@ button {
   cursor: pointer;
 }
 
+.suggested-price {
+  text-decoration: line-through;
+  color: #888;
+  margin-left: 0.5em;
+}
+.discount-badge {
+  background: #e53935;
+  color: #fff;
+  border-radius: 4px;
+  padding: 0.2em 0.5em;
+  margin-left: 0.5em;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
