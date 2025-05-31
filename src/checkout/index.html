@@ -21,37 +21,38 @@
         <h2>Review & Place Your Order</h2>
 
         <form id="checkout-form">
-            <label for="first-name">First Name:</label>
-            <input type="text" id="first-name" name="first-name" required>
+          <label for="first-name">First Name:</label>
+          <input type="text" id="first-name" name="first-name" required value="John">
 
-            <label for="last-name">Last Name:</label>
-            <input type="text" id="last-name" name="last-name" required>
+          <label for="last-name">Last Name:</label>
+          <input type="text" id="last-name" name="last-name" required value="Doe">
 
-            <h3>Shipping Address</h3>
-            <label for="street">Street Address:</label>
-            <input type="text" id="street" name="street" required>
+          <h3>Shipping Address</h3>
+          <label for="street">Street Address:</label>
+          <input type="text" id="street" name="street" required value="123 Main St">
 
-            <label for="city">City:</label>
-            <input type="text" id="city" name="city" required>
+          <label for="city">City:</label>
+          <input type="text" id="city" name="city" required value="Rexburg">
 
-            <label for="state">State:</label>
-            <input type="text" id="state" name="state" required>
+          <label for="state">State:</label>
+          <input type="text" id="state" name="state" required value="ID">
 
-            <label for="zip">Zip Code:</label>
-            <input type="text" id="zip" name="zip" pattern="[0-9]{5}" required>
+          <label for="zip">Zip Code:</label>
+          <input type="text" id="zip" name="zip" pattern="[0-9]{5}" required value="83440">
 
-            <h3>Payment Information</h3>
-            <label for="card-number">Credit Card Number:</label>
-            <input type="text" id="card-number" name="card-number" pattern="[0-9]{16}" required>
+          <h3>Payment Information</h3>
+          <label for="card-number">Credit Card Number:</label>
+          <input type="text" id="card-number" name="card-number" pattern="[0-9]{16}" required value="1234123412341234">
 
-            <label for="expiry">Expiration Date:</label>
-            <input type="month" id="expiry" name="expiry" required>
+          <label for="expiry">Expiration Date:</label>
+          <input type="month" id="expiry" name="expiry" required value="2025-12">
 
-            <label for="security-code">Security Code (CVV):</label>
-            <input type="text" id="security-code" name="security-code" pattern="[0-9]{3}" required>
+          <label for="security-code">Security Code (CVV):</label>
+          <input type="text" id="security-code" name="security-code" pattern="[0-9]{3}" required value="123">
 
-            <button type="submit">Place Order</button>
+          <button type="submit">Place Order</button>
         </form>
+
 
         <div class="order-summary hide">
             <h3>Order Summary</h3>

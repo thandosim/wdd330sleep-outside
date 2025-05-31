@@ -1,4 +1,4 @@
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {

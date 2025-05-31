@@ -9,9 +9,8 @@ const checkout = new CheckoutProcess("so-cart", ".order-summary");
 checkout.init();
 
 // Validate checkout form before submission
-document.getElementById("checkout-form").addEventListener("submit", function(event) {
-    if (!this.checkValidity()) {
-        alert("Please fill out all fields correctly before placing the order.");
-        event.preventDefault(); // Prevent form submission
-    }
+const form = document.getElementById("checkout-form");
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    checkout.checkout(this);
 });
