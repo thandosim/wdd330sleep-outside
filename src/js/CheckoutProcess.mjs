@@ -97,15 +97,15 @@ export default class CheckoutProcess {
     // populate the JSON order object with the order Date, orderTotal, tax, shipping, and list of items
     // call the checkout method in the ExternalServices module and send it the JSON order data.
         // 1️⃣ Extract form data and convert to JSON
-        const formData = new FormData(form);
-        const orderData = formDataToJSON(formData);
+        // const formData = new FormData(form);
+        const orderData = formDataToJSON(form);
 
         // 2️⃣ Add additional order details
         orderData.orderDate = new Date().toISOString();
         orderData.orderTotal = this.orderTotal.toFixed(2);
         orderData.tax = (this.itemTotal * this.taxRate).toFixed(2);
         orderData.shipping = this.shipping.toFixed(2);
-        orderData.items = this.packageItems(this.list);
+        orderData.items = packageItems(this.list);
 
         // 3️⃣ Prepare fetch options for the POST request
         const options = {

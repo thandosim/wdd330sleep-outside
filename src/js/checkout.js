@@ -9,7 +9,8 @@ const checkout = new CheckoutProcess("so-cart", ".order-summary");
 checkout.init();
 
 // Validate checkout form before submission
-document.getElementById("checkout-form").addEventListener("submit", function(event) {
+const form = document.getElementById("checkout-form");
+form.addEventListener("submit", function(event) {
     event.preventDefault();
-    event.checkout();
+    checkout.checkout(this);
 });
