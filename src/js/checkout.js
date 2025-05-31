@@ -10,8 +10,6 @@ checkout.init();
 
 // Validate checkout form before submission
 document.getElementById("checkout-form").addEventListener("submit", function(event) {
-    if (!this.checkValidity()) {
-        alert("Please fill out all fields correctly before placing the order.");
-        event.preventDefault(); // Prevent form submission
-    }
+    event.preventDefault();
+    event.checkout();
 });

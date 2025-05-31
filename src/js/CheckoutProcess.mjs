@@ -1,4 +1,29 @@
 import { getLocalStorage } from "./utils.mjs";
+import ExternalServices from "./ExternalServices.mjs";
+
+// takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
+function packageItems(items) {
+// convert the list of products from localStorage to the simpler form required for the checkout process.
+// An Array.map would be perfect for this process.
+    return items.map(item => ({
+        id: item.Id, // Ensure correct property names
+        name: item.Name,
+        price: item.FinalPrice,
+        quantity: item.Quantity || 1 // Default to 1 if undefined
+    }));
+}
+
+// takes a form element and returns an object where the key is the "name" of the form input.
+function formDataToJSON(formElement) {
+  const formData = new FormData(formElement),
+    convertedJSON = {};
+
+  formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+  });
+
+  return convertedJSON;
+}
 
 export default class CheckoutProcess {
     constructor(key, outputSelector) {
@@ -65,4 +90,34 @@ export default class CheckoutProcess {
         // }
 
     }
+
+    async checkout(form) {
+    // get the form element data by the form name
+    // convert the form data to a JSON order object using the formDataToJSON function
+    // populate the JSON order object with the order Date, orderTotal, tax, shipping, and list of items
+    // call the checkout method in the ExternalServices module and send it the JSON order data.
+        // 1️⃣ Extract form data and convert to JSON
+        const formData = new FormData(form);
+        const orderData = formDataToJSON(formData);
+
+        // 2️⃣ Add additional order details
+        orderData.orderDate = new Date().toISOString();
+        orderData.orderTotal = this.orderTotal.toFixed(2);
+        orderData.tax = (this.itemTotal * this.taxRate).toFixed(2);
+        orderData.shipping = this.shipping.toFixed(2);
+        orderData.items = this.packageItems(this.list);
+
+        // 3️⃣ Prepare fetch options for the POST request
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(orderData),
+        };
+
+        // 4️⃣ Send the order data to the checkout endpoint
+        const response = await fetch("https://wdd330-backend.onrender.com:3000/checkout", options);
+    }
 }
+
