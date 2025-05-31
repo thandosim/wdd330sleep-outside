@@ -117,7 +117,7 @@ export default class CheckoutProcess {
         };
 
         // 4️⃣ Send the order data to the checkout endpoint
-        const response = await fetch("https://wdd330-backend.onrender.com:3000/checkout", options);
+        const response = await fetch("https://wdd330-backend.onrender.com/checkout", options);
     }
 }
 
