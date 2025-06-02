@@ -96,28 +96,35 @@ export default class CheckoutProcess {
     // convert the form data to a JSON order object using the formDataToJSON function
     // populate the JSON order object with the order Date, orderTotal, tax, shipping, and list of items
     // call the checkout method in the ExternalServices module and send it the JSON order data.
-        // 1️⃣ Extract form data and convert to JSON
+
         // const formData = new FormData(form);
-        const orderData = formDataToJSON(form);
+        try {
 
-        // 2️⃣ Add additional order details
-        orderData.orderDate = new Date().toISOString();
-        orderData.orderTotal = this.orderTotal.toFixed(2);
-        orderData.tax = (this.itemTotal * this.taxRate).toFixed(2);
-        orderData.shipping = this.shipping.toFixed(2);
-        orderData.items = packageItems(this.list);
+            const orderData = formDataToJSON(form);
+        
+            orderData.orderDate = new Date().toISOString();
+            orderData.orderTotal = this.orderTotal.toFixed(2);
+            orderData.tax = (this.itemTotal * this.taxRate).toFixed(2);
+            orderData.shipping = this.shipping.toFixed(2);
+            orderData.items = packageItems(this.list);
 
-        // 3️⃣ Prepare fetch options for the POST request
-        const options = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(orderData),
-        };
+            const options = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(orderData),
+            };
 
-        // 4️⃣ Send the order data to the checkout endpoint
-        const response = await fetch("https://wdd330-backend.onrender.com/checkout", options);
+            
+            const response = await fetch("https://wdd330-backend.onrender.com/checkout", options);
+        } catch(err) { 
+            console.error("Checkout error:", err);
+            alert("There was an issue with your order. Please try again.");
+        }
+        
+        
+        
     }
 }
 
