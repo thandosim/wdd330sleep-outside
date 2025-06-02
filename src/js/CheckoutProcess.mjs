@@ -118,6 +118,10 @@ export default class CheckoutProcess {
 
             
             const response = await fetch("https://wdd330-backend.onrender.com/checkout", options);
+            alert("Order placed successfully! Redirecting...");
+            localStorage.removeItem(this.key);
+            window.location.href = "success.html";
+
         } catch(err) { 
             console.error("Checkout error:", err);
             alert("There was an issue with your order. Please try again.");
