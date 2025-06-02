@@ -362,3 +362,23 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.sort-options {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: var(--light-grey);
+  border-radius: 4px;
+}
+
+.sort-options label {
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.sort-options select {
+  padding: 0.25rem;
+  border: 1px solid var(--dark-grey);
+  border-radius: 4px;
+}
