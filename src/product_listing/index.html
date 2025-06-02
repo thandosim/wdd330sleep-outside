@@ -13,6 +13,16 @@
     <main class="divider">
       <section class="products">
         <h2 id="category">Top Products:</h2>
+        <div class="sort-options">
+          <label for="sort-select">Sort by:</label>
+          <select id="sort-select">
+            <option value="default">Default</option>
+            <option value="name">Name (A-Z)</option>
+            <option value="nameReverse">Name (Z-A)</option>
+            <option value="price">Price (Low-High)</option>
+            <option value="priceReverse">Price (High-Low)</option>
+          </select>
+        </div>
         <ul class="product-list"></ul>
       </section>
     </main>
