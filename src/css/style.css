@@ -1,3 +1,4 @@
+
 :root {
   --font-body: Arial, Helvetica, sans-serif;
   --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -381,4 +382,28 @@ footer {
   padding: 0.25rem;
   border: 1px solid var(--dark-grey);
   border-radius: 4px;
+}
+
+.product-pricing {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.product-card__original-price {
+  text-decoration: line-through;
+  color: var(--dark-grey);
+  font-size: 0.9em;
+  margin: 0.2em 0;
+}
+
+.product-discount {
+  color: #d04848;
+  font-weight: bold;
+  margin: 0.5em 0;
+  padding: 0.3em 0.5em;
+  background-color: #fff8f8;
+  border-radius: 4px;
+  display: inline-block;
+  border: 1px dashed #d04848;
 }
