@@ -10,10 +10,9 @@ checkout.init();
 
 // Validate checkout form before submission
 const form = document.getElementById("checkout-form");
-form.addEventListener("submit", function(event) {
-    event.preventDefault();
-    const check_status = this.checkValidity();
-    this.reportValidity();
-    if(check_status)
-        checkout.checkout(this);
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  const check_status = this.checkValidity();
+  this.reportValidity();
+  if (check_status) checkout.checkout(this);
 });
