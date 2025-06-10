@@ -7,7 +7,7 @@ export default class Alert {
     const section = document.createElement("section");
     section.classList.add("alert-list");
 
-    console.log("Main found?", document.querySelector("main"));
+    // console.log("Main found?", document.querySelector("main"));
 
     alertsArr.forEach((a) => {
       const p = document.createElement("p");
@@ -16,7 +16,7 @@ export default class Alert {
       p.style.color = a.color;
       p.style.border = "1px solid red";
       section.appendChild(p);
-      console.log("Adding alert:", a.message); // i can't see it :(
+      // console.log("Adding alert:", a.message); // i can't see it :(
     });
 
     document.querySelector("main").prepend(section);

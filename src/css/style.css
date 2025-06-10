@@ -342,6 +342,18 @@ button:hover {
   display: none;
 }
 
+.cart-count {
+  font-size: 0.8rem;
+  font-weight: bold;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 6px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
