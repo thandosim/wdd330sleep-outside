@@ -1,4 +1,4 @@
-import { loadHeaderFooter, getLocalStorage } from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 import CheckoutProcess from "./CheckoutProcess.mjs";
 
 // Load header and footer
