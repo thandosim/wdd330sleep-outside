@@ -61,6 +61,8 @@ export async function loadHeaderFooter() {
   const footerTemplate = await loadTemplate("/partials/footer.html");
   const footerElement = document.querySelector("#main-footer");
   renderWithTemplate(footerTemplate, footerElement);
+
+  updateCartCount();
 }
 
 //my own function to capitilize words. 
@@ -92,4 +94,13 @@ export function alertMessage(message, scroll=true) {
   // you may not always want to do this...so default to scroll=true, but allow it to be passed in and overridden.
   if(scroll)
     window.scrollTo(0,0);
+}
+
+//count items in cart to prepare superscript
+export function updateCartCount() {
+    const cart = getLocalStorage("so-cart") || [];
+    const cartCountElement = document.querySelector("#cart-count");
+    if (cartCountElement) {
+        cartCountElement.textContent = cart.length;
+    }
 }
