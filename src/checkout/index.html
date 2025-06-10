@@ -22,46 +22,92 @@
 
         <form id="checkout-form">
           <label for="first-name">First Name:</label>
-          <input type="text" id="first-name" name="first-name" required value="John">
+          <input
+            type="text"
+            id="first-name"
+            name="first-name"
+            required
+            value="John"
+          />
 
           <label for="last-name">Last Name:</label>
-          <input type="text" id="last-name" name="last-name" required value="Doe">
+          <input
+            type="text"
+            id="last-name"
+            name="last-name"
+            required
+            value="Doe"
+          />
 
           <h3>Shipping Address</h3>
           <label for="street">Street Address:</label>
-          <input type="text" id="street" name="street" required value="123 Main St">
+          <input
+            type="text"
+            id="street"
+            name="street"
+            required
+            value="123 Main St"
+          />
 
           <label for="city">City:</label>
-          <input type="text" id="city" name="city" required value="Rexburg">
+          <input type="text" id="city" name="city" required value="Rexburg" />
 
           <label for="state">State:</label>
-          <input type="text" id="state" name="state" required value="ID">
+          <input type="text" id="state" name="state" required value="ID" />
 
           <label for="zip">Zip Code:</label>
-          <input type="text" id="zip" name="zip" pattern="[0-9]{5}" required value="83440">
+          <input
+            type="text"
+            id="zip"
+            name="zip"
+            pattern="[0-9]{5}"
+            required
+            value="83440"
+          />
 
           <h3>Payment Information</h3>
           <label for="card-number">Credit Card Number:</label>
-          <input type="text" id="card-number" name="card-number" pattern="[0-9]{16}" required value="1234123412341234">
+          <input
+            type="text"
+            id="card-number"
+            name="card-number"
+            pattern="[0-9]{16}"
+            required
+            value="1234123412341234"
+          />
 
           <label for="expiry">Expiration Date:</label>
-          <input type="month" id="expiry" name="expiry" required value="2025-12">
+          <input
+            type="month"
+            id="expiry"
+            name="expiry"
+            required
+            value="2025-12"
+          />
 
           <label for="security-code">Security Code (CVV):</label>
-          <input type="text" id="security-code" name="security-code" pattern="[0-9]{3}" required value="123">
+          <input
+            type="text"
+            id="security-code"
+            name="security-code"
+            pattern="[0-9]{3}"
+            required
+            value="123"
+          />
 
           <button type="submit">Place Order</button>
         </form>
 
-
         <div class="order-summary hide">
-            <h3>Order Summary</h3>
-            <p>Subtotal: $<span id="subtotal">0.00</span></p>
-            <p>Tax: $<span id="tax">0.00</span></p>
-            <p>Shipping Estimate: $<span id="shipping">0.00</span></p>
-            <p><strong>Order Total: $<span id="order-total">0.00</span></strong></p>
+          <h3>Order Summary</h3>
+          <p>Subtotal: $<span id="subtotal">0.00</span></p>
+          <p>Tax: $<span id="tax">0.00</span></p>
+          <p>Shipping Estimate: $<span id="shipping">0.00</span></p>
+          <p>
+            <strong>Order Total: $<span id="order-total">0.00</span></strong>
+          </p>
         </div>
-    </section>
+      </section>
     </main>
 
     <footer id="main-footer">&copy;NOT a real business</footer>

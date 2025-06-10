@@ -257,91 +257,91 @@ button {
 }
 
 .cart-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #f8f8f8;
-    border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f8f8f8;
+  border-top: 1px solid #ccc;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 /*Checkout page*/
 /* General form styling */
 #checkout-form {
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Labels */
 #checkout-form label {
-    display: block;
-    font-weight: bold;
-    margin-top: 10px;
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 /* Inputs */
 #checkout-form input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 /* Styling Sections */
 h3 {
-    margin-top: 20px;
-    font-size: 1.2em;
-    color: #333;
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #333;
 }
 
 /* Checkout Button */
-button[type="submit"], .checkout-btn {
-    width: 100%;
-    background-color: #28a745;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
+button[type="submit"],
+.checkout-btn {
+  width: 100%;
+  background-color: #28a745;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
 }
 
 button:hover {
-    background-color: #218838;
+  background-color: #218838;
 }
 
 /* Order Summary */
 .order-summary {
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 15px;
-    background: #f1f1f1;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 16px;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 15px;
+  background: #f1f1f1;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 16px;
 }
 
 .order-summary p {
-    font-weight: bold;
-    margin: 5px 0;
+  font-weight: bold;
+  margin: 5px 0;
 }
 
 /* Hide summary until needed */
 .hide {
-    display: none;
+  display: none;
 }
-
 
 @media screen and (min-width: 500px) {
   body {
