@@ -10,3 +10,7 @@ const productList = new ProductList(
 );
 // loadHeaderFooter();
 productList.init();
+
+import Alert from "./Alert.js";
+const a = new Alert();
+a.init();
